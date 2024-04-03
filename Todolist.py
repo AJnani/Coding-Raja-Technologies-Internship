@@ -6,20 +6,21 @@ class TodoListApp:
     def __init__(self, master):
         self.master = master
         self.master.title("To-Do List App")
+        self.master.configure(background="#FFFDD0")
         
         # Initialize tasks
         self.tasks = []
         self.load_tasks()
 
         # Create UI elements
-        self.task_entry = tk.Entry(master, width=50)
+        self.task_entry = tk.Entry(master, width=50, bg="#E9FFD0", fg="#333333")
         self.task_entry.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
         
-        self.add_button = tk.Button(master, text="Add Task", command=self.add_task)
+        self.add_button = tk.Button(master, text="Add Task", command=self.add_task, bg="#008080", fg="white")
         self.add_button.grid(row=0, column=2, padx=5, pady=5)
         
         # Due date entry
-        self.due_date_entry = tk.Entry(master, width=25)
+        self.due_date_entry = tk.Entry(master, width=25, bg="#E9FFD0", fg="#333333")
         self.due_date_entry.grid(row=1, column=1, padx=5, pady=5, sticky="ew")
         
         self.due_date_label = tk.Label(master, text="Due Date (DD-MM-YYYY):")
@@ -29,17 +30,18 @@ class TodoListApp:
         self.priority_var = tk.StringVar(master)
         self.priority_var.set("Priority")
         self.priority_dropdown = tk.OptionMenu(master, self.priority_var, "Low", "Medium", "High")
+        self.priority_dropdown.config(bg="#DAD1CE", fg="#333333")  # Dropdown background color and text color
         self.priority_dropdown.grid(row=2, column=0, padx=5, pady=5, sticky="ew")
         
         # Task listbox
-        self.task_listbox = tk.Listbox(master, width=50, height=20)
+        self.task_listbox = tk.Listbox(master, width=50, height=20,  bg="#E9FFD0", fg="#333333")
         self.task_listbox.grid(row=3, column=0, columnspan=3, padx=5, pady=5)
         
-        self.remove_button = tk.Button(master, text="Remove Task", command=self.remove_task)
+        self.remove_button = tk.Button(master, text="Remove Task", command=self.remove_task,  bg="#BF1B00", fg="white")
         self.remove_button.grid(row=4, column=0, padx=5, pady=5)
         
-        self.complete_button = tk.Button(master, text="Mark as Completed", command=self.mark_completed)
-        self.complete_button.grid(row=4, column=1, padx=5, pady=5)
+        self.complete_button = tk.Button(master, text="Mark as Completed", command=self.mark_completed,  bg="#6C8CAC", fg="white")
+        self.complete_button.grid(row=4, column=2, padx=5, pady=5)
         
         # Populate task listbox
         self.update_task_listbox()
